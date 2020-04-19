@@ -1,4 +1,4 @@
-# Restful-web
+# Rustful-web
 
 This is a research project for Rustful web application. The application uses Rust langeage from backend to frontend.
 
