@@ -1,4 +1,8 @@
-use actix_web::{App, HttpServer};
+use actix_web::{App, HttpResponse, HttpServer, Responder};
+
+async fn index() -> impl Responder {
+    HttpResponse::Ok().body("Welcom to Rustful World!")
+}
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
