@@ -9,4 +9,6 @@ async fn main() -> std::io::Result<()> {
     // let addr = std::net::SocketAddr::from(([127, 0, 0, 1], 443));
 
     let mut server = HttpServer::new(|| App::new());
+
+    server.bind(addr)?.run().await
 }
