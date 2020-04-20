@@ -1,3 +1,2 @@
-fn main() {
-    println!("Backend");
-}
+#[actix_rt::main]
+async fn main() -> std::io::Result<()> {}
