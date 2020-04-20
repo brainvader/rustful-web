@@ -1,4 +1,4 @@
-use actix_web::{App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 
 async fn index() -> impl Responder {
     HttpResponse::Ok().body("Welcom to Rustful World!")
@@ -12,7 +12,7 @@ async fn main() -> std::io::Result<()> {
     let addr = std::net::SocketAddr::new(ip, port);
     // let addr = std::net::SocketAddr::from(([127, 0, 0, 1], 443));
 
-    let mut server = HttpServer::new(|| App::new());
+    let mut server = HttpServer::new(|| App::new().route("/", web::get().to(index)));
 
     server.bind(addr)?.run().await
 }
