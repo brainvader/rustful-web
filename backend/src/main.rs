@@ -12,7 +12,9 @@ async fn main() -> std::io::Result<()> {
     let addr = std::net::SocketAddr::new(ip, port);
     // let addr = std::net::SocketAddr::from(([127, 0, 0, 1], 443));
 
-    let mut server = HttpServer::new(|| App::new().route("/", web::get().to(index)));
+    let app_factory = || App::new().route("/", web::get().to(index));
+
+    let mut server = HttpServer::new(app_factory);
 
     server.bind(addr)?.run().await
 }
