@@ -1,7 +1,12 @@
+use actix_web::http::header::ContentType;
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 
 async fn index() -> impl Responder {
-    HttpResponse::Ok().body("Welcom to Rustful World!")
+    let mut builder = HttpResponse::Ok();
+    let mime_type = ContentType::plaintext().to_string();
+    builder
+        .content_type(mime_type)
+        .body("Welcom to Rustful World!")
 }
 
 async fn page_not_found() -> impl Responder {
