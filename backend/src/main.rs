@@ -4,6 +4,12 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().body("Welcom to Rustful World!")
 }
 
+async fn page_not_found() -> impl Responder {
+    let mut builder = HttpResponse::NotFound();
+    let response = builder.body("404 Not Found");
+    response
+}
+
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     let localhost = std::net::Ipv4Addr::new(127, 0, 0, 1);
@@ -15,7 +21,7 @@ async fn main() -> std::io::Result<()> {
     let app_factory = || {
         App::new()
             .route("/", web::get().to(index))
-            .default_service(web::route().to(|| HttpResponse::NotFound()))
+            .default_service(web::route().to(page_not_found))
     };
 
     let mut server = HttpServer::new(app_factory);
