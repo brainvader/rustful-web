@@ -11,8 +11,8 @@ async fn index() -> impl Responder {
 
 async fn page_not_found() -> impl Responder {
     let mut builder = HttpResponse::NotFound();
-    let response = builder.body("404 Not Found");
-    response
+    let mime_type = ContentType::plaintext().to_string();
+    builder.content_type(mime_type).body("404 Not Found")
 }
 
 #[actix_rt::main]
